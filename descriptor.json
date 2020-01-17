@@ -1,6 +1,6 @@
 {
   "name": "ObjectTracking-MU-Lux-CZ",
-  "description": "",
+  "description": "A cell tracker adapted from the Cell Tracking Challenge",
   "container-image": {
     "image": "neubiaswg5/w_objecttracking-mu-lux-cz",
     "type": "singularity"

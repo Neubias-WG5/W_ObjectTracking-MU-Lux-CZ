@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "ObjectTracking-MU-Lux-CZ",
   "description": "",
   "container-image": {
-    "image": "neubiaswg5/w_",
+    "image": "neubiaswg5/w_objecttracking-mu-lux-cz",
     "type": "singularity"
   },
   "command-line": "python wrapper.py CYTOMINE_HOST CYTOMINE_PUBLIC_KEY CYTOMINE_PRIVATE_KEY CYTOMINE_ID_PROJECT CYTOMINE_ID_SOFTWARE",

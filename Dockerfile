@@ -23,10 +23,11 @@ RUN pip install opencv-python
 RUN pip install tensorflow
 RUN pip install scikit-image
 RUN pip install keras
+RUN pip install gdown
 
 RUN mkdir /app
+RUN cd /app && gdown -O model.h5 https://drive.google.com/file/d/1lZVDnCPmw9GT90oxRe_FIGgC19mKIvV7
 ADD cell_tracker.py /app/cell_tracker.py
-ADD model.h5 /app/model.h5
 ADD wrapper.py /app/wrapper.py
 
 ENTRYPOINT ["python3.6","/app/wrapper.py"]

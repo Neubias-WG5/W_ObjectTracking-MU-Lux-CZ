@@ -23,10 +23,9 @@ RUN pip install opencv-python
 RUN pip install tensorflow
 RUN pip install scikit-image
 RUN pip install keras
-RUN pip install gdown
 
 RUN mkdir /app
-RUN cd /app && gdown -O model.h5 https://drive.google.com/file/d/1lZVDnCPmw9GT90oxRe_FIGgC19mKIvV7
+RUN wget https://biaflows.neubias.org/workflow-files/MU-Lux-CZ-model.h5 -O /app/model.h5
 ADD cell_tracker.py /app/cell_tracker.py
 ADD wrapper.py /app/wrapper.py
 

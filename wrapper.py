@@ -51,11 +51,11 @@ def main(argv):
             os.rename(os.path.join(tmp_path, 'res_track.txt'), os.path.join(out_path, img.filename_no_extension+'.txt')
 
         # 4. Upload the annotation and labels to Cytomine
-        upload_data(problem_cls, nj, in_images, out_path, **nj.flags, is_2d=is_2d, monitor_params={"start": 60, "end": 90, "period": 0.1})
+        upload_data(problem_cls, nj, in_imgs, out_path, **nj.flags, is_2d=is_2d, monitor_params={"start": 60, "end": 90, "period": 0.1})
 
         # 5. Compute and upload the metrics
         nj.job.update(progress=90, statusComment="Computing and uploading metrics...")
-        upload_metrics(problem_cls, nj, in_images, gt_path, out_path, tmp_path, **nj.flags)
+        upload_metrics(problem_cls, nj, in_imgs, gt_path, out_path, tmp_path, **nj.flags)
 
         # 6. End
         nj.job.update(status=Job.TERMINATED, progress=100, statusComment="Finished.")

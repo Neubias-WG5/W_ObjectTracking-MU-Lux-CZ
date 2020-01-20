@@ -23,7 +23,7 @@ def main(argv):
         nj.job.update(progress=25, statusComment="Launching workflow...")
 
         for in_img in in_imgs:
-            
+
             # convert the image data to Cell Tracking Challenge format
             img = io.imread(os.path.join(in_path, in_img))
             T = img.shape[0]
@@ -38,7 +38,7 @@ def main(argv):
 
             # do segmentation and tracking
             process_dataset(tmp_path, tmp_path, '/app/model.h5')
-            
+
             # convert the tracking results to the required format
             index = 0
             res_img = np.zeros((T,Y,X),np.uint16)
@@ -49,7 +49,7 @@ def main(argv):
                 index += offset
             io.imsave(os.path.join(out_path, in_img), res_img)
             os.rename(os.path.join(tmp_path, 'res_track.txt'), os.path.join(out_path, img.filename_no_extension+'.txt')
-                
+
         # 4. Upload the annotation and labels to Cytomine
         upload_data(problem_cls, nj, in_images, out_path, **nj.flags, is_2d=is_2d, monitor_params={"start": 60, "end": 90, "period": 0.1})
 

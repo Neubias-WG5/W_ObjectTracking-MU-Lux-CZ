@@ -17,7 +17,7 @@ def main(argv):
                       statusComment="Running workflow for problem class '{}'".format(problem_cls))
 
         # 1. Prepare data for workflow
-        in_imgs, gt_imgs, in_path, gt_path, out_path, tmp_path = prepare_data(problem_cls, nj, is_2d=True, **nj.flags)
+        in_imgs, gt_imgs, in_path, gt_path, out_path, tmp_path = prepare_data(problem_cls, nj, **nj.flags)
 
         # 2. Run image analysis workflow
         nj.job.update(progress=25, statusComment="Launching workflow...")

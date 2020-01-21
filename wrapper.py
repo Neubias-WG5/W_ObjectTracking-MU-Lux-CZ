@@ -5,8 +5,7 @@ from skimage import io
 from cell_tracker import process_dataset 
 from cytomine.models import Job
 from neubiaswg5 import CLASS_OBJTRK
-from neubiaswg5.helpers import NeubiasJob, prepare_data, upload_data, upload_metrics
-
+from neubiaswg5.helpers import get_discipline, NeubiasJob, prepare_data, upload_data, upload_metrics
 
 def main(argv):
     # 0. Initialize Cytomine client and job if necessary and parse inputs

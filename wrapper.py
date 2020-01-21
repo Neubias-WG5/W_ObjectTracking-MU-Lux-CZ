@@ -48,7 +48,7 @@ def main(argv):
                 res_data[index:index+offset]=res.ravel()
                 index += offset
             io.imsave(os.path.join(out_path, in_img), res_img)
-            os.rename(os.path.join(tmp_path, 'res_track.txt'), os.path.join(out_path, img.filename_no_extension+'.txt')
+            os.rename(os.path.join(tmp_path, 'res_track.txt'), os.path.join(out_path, img.filename_no_extension+'.txt'))
 
         # 4. Upload the annotation and labels to Cytomine
         upload_data(problem_cls, nj, in_imgs, out_path, **nj.flags, is_2d=is_2d, monitor_params={"start": 60, "end": 90, "period": 0.1})

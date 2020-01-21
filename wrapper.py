@@ -24,7 +24,7 @@ def main(argv):
         for in_img in in_imgs:
 
             # convert the image data to Cell Tracking Challenge format
-            img = io.imread(os.path.join(in_path, in_img))
+            img = io.imread(in_img.filepath)
             T = img.shape[0]
             Y = img.shape[1]
             X = img.shape[2]
@@ -46,8 +46,8 @@ def main(argv):
                 res = io.imread(os.path.join(out_dir, 'mask{0:03d}.tif'.format(t)))
                 res_data[index:index+offset]=res.ravel()
                 index += offset
-            io.imsave(os.path.join(out_path, in_img), res_img)
-            os.rename(os.path.join(tmp_path, 'res_track.txt'), os.path.join(out_path, img.filename_no_extension+'.txt'))
+            io.imsave(os.path.join(out_path, in_img.filename), res_img)
+            os.rename(os.path.join(tmp_path, 'res_track.txt'), os.path.join(out_path, in_img.filename_no_extension+'.txt'))
 
         # 4. Upload the annotation and labels to Cytomine
         upload_data(problem_cls, nj, in_imgs, out_path, **nj.flags, is_2d=is_2d, monitor_params={"start": 60, "end": 90, "period": 0.1})

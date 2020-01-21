@@ -23,7 +23,7 @@ def main(argv):
 
         for in_img in in_imgs:
 
-            # convert the image data to Cell Tracking Challenge format
+            # convert the image data to the Cell Tracking Challenge format
             img = io.imread(in_img.filepath)
             T = img.shape[0]
             Y = img.shape[1]
@@ -32,7 +32,7 @@ def main(argv):
             index = 0
             offset = Y*X
             for t in range(T):
-                io.imsave(os.path.join(out_path, template + '{0:03d}.tif'.format(t)),img_data[index:index+offset].reshape((Y,X)))
+                io.imsave(os.path.join(out_path, 't{0:03d}.tif'.format(t)), img_data[index:index+offset].reshape((Y,X)))
                 index += offset
 
             # do segmentation and tracking

@@ -32,7 +32,7 @@ def main(argv):
             index = 0
             offset = Y*X
             for t in range(T):
-                io.imsave(os.path.join(out_path, 't{0:03d}.tif'.format(t)), img_data[index:index+offset].reshape((Y,X)))
+                io.imsave(os.path.join(tmp_path, 't{0:03d}.tif'.format(t)), img_data[index:index+offset].reshape((Y,X)))
                 index += offset
 
             # do segmentation and tracking
@@ -43,7 +43,7 @@ def main(argv):
             res_img = np.zeros((T,Y,X),np.uint16)
             res_data = res_img.ravel()
             for t in range(T):
-                res = io.imread(os.path.join(out_path, 'mask{0:03d}.tif'.format(t)))
+                res = io.imread(os.path.join(tmp_path, 'mask{0:03d}.tif'.format(t)))
                 res_data[index:index+offset]=res.ravel()
                 index += offset
             io.imsave(os.path.join(out_path, in_img.filename), res_img)

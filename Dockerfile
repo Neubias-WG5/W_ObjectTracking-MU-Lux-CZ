@@ -18,7 +18,7 @@ RUN cp /biaflows-utilities/bin/* /usr/bin/ && \
     rm -r /biaflows-utilities
 
 # ------------------------------------------------------------------------------
-
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 -y
 RUN pip install opencv-python
 RUN pip install tensorflow
 RUN pip install scikit-image

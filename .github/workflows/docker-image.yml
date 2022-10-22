@@ -16,12 +16,17 @@ jobs:
       with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk '{print tolower($0)}' | tr -d -)" >> $GITHUB_ENV
+    - name: get the user or organization name
+      run: echo "USER_NAME=$(echo '${{ github.repository }}' | awk '{print tolower($0)}' | cut -d/ -f 1  | tr -d -)" >> $GITHUB_ENV
       shell: bash
+    - name: get the repository name
+      run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk '{print tolower($0)}' | cut -d/ -f 2)" >> $GITHUB_ENV
+      shell: bash  
     - name: Get the version
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
     - name: Build the tagged Docker image
-      run: docker build . --file Dockerfile --tag  ${{ env.REPOSITORY_NAME }}:${{ steps.vars.outputs.tag }}
+      run: docker build . --file Dockerfile --tag  ${{ env.USER_NAME }}/${{ env.REPOSITORY_NAME }}:${{ steps.vars.outputs.tag }}
     - name: Push the tagged Docker image
-      run: docker push ${{ env.REPOSITORY_NAME }}:${{ steps.vars.outputs.tag }}
+      run: docker push ${{ env.USER_NAME }}/${{ env.REPOSITORY_NAME }}:${{ steps.vars.outputs.tag }}
+
